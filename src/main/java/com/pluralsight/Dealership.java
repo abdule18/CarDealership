@@ -25,32 +25,64 @@ public class Dealership {
                 result.add(v);
             }
         }
-
         return result;
     }
 
     public ArrayList<Vehicle> getVehicleByMakeModel(String make, String model){
-        return null;
+
+        ArrayList<Vehicle> result = new ArrayList<Vehicle>();
+        for (Vehicle v: inventory){
+            if (v.getMake().equalsIgnoreCase(make) && v.getModel().equalsIgnoreCase(model)){
+                result.add(v);
+            }
+        }
+        return result;
     }
 
     public ArrayList<Vehicle> getVehicleByYear(int min, int max){
-        return null;
+        ArrayList<Vehicle> result = new ArrayList<Vehicle>();
+        for (Vehicle v: inventory){
+            if (v.getYear() >= min && v.getYear() <= max){
+                result.add(v);
+            }
+        }
+        return result;
     }
 
     public ArrayList<Vehicle> getVehicleByColor(String color){
-        return null;
+        ArrayList<Vehicle> result = new ArrayList<Vehicle>();
+        for (Vehicle v: inventory){
+            if (v.getColor().equalsIgnoreCase(color)){
+                result.add(v);
+            }
+        }
+        return result;
     }
 
     public ArrayList<Vehicle> getVehicleByMileage(int min, int max){
-        return null;
+        ArrayList<Vehicle> result = new ArrayList<Vehicle>();
+        for (Vehicle v: inventory){
+            if (v.getOdometer() >= min && v.getOdometer() <= max){
+                result.add(v);
+            }
+        }
+        return result;
     }
 
     public ArrayList<Vehicle> getVehicleByType(String vehicleType){
-        return null;
+        ArrayList<Vehicle> result = new ArrayList<Vehicle>();
+        for (Vehicle v: inventory){
+            if (v.getVehicleType().equalsIgnoreCase(vehicleType)){
+                result.add(v);
+            }
+        }
+        return result;
     }
 
     public ArrayList<Vehicle> getAllVehicles(){
-        return null;
+        ArrayList<Vehicle> result = new ArrayList<Vehicle>();
+        result.addAll(inventory);
+        return result;
     }
 
     public void addVehicle(Vehicle vehicle){
