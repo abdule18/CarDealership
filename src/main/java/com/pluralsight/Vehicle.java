@@ -84,4 +84,11 @@ public class Vehicle {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public String getFormattedTransactionText() {
+        return String.format(
+                "%-12s %-10s %-20s %-15s %10.2f",
+                this.vin, this.year, this.make, this.model, this.vehicleType, this.color, this.odometer, this.price
+        );
+    }
 }

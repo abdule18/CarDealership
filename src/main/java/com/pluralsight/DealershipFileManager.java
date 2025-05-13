@@ -24,8 +24,6 @@ public class DealershipFileManager {
     public Dealership getDealership(){
 
         //create a dealership
-        Dealership d = new Dealership("mydealrship", "123 street", "555-555-5555");
-        d.addVehicle(new Vehicle(12, 2004, "Jeep", "CJ", "SUV", "Red", 50000, 15000));
         //create a bunch of vehicles.
         // add each vehicle to the dealership
 
@@ -33,27 +31,18 @@ public class DealershipFileManager {
 
 
         FileReader fr = null;
+        Dealership d = null;
         try {
             fr = new FileReader(fileName);
             BufferedReader br = new BufferedReader(fr);
 
+            String firstLine = br.readLine();
+            d = getDealershipFromEncodedString(firstLine);
+
             String line;
 
             while ((line = br.readLine()) != null){
-                String[] parts = line.split("\\|");
-
-                if (parts.length != 8) continue;
-
-                int vin = Integer.parseInt(parts[0].trim());
-                int year = Integer.parseInt(parts[1].trim());
-                String make = parts[2].trim();
-                String model = parts[3].trim();
-                String vehicleType =  parts[4].trim();
-                String color = parts[5].trim();
-                int odometer = Integer.parseInt(parts[6].trim());
-                double price = Double.parseDouble(parts[7].trim());
-
-                d.addVehicle(new Vehicle(vin, year, make, model, vehicleType, color, odometer, price));
+                d.addVehicle(getVehicleFromEncodedString(line));
             }
 
             br.close();
@@ -63,7 +52,38 @@ public class DealershipFileManager {
         return d;
     }
 
-    public void saveDealership(){
+    public static Vehicle getVehicleFromEncodedString(String encodedString){
+        String[] parts = encodedString.split("\\|");
 
+        if (parts.length != 8) {
+            return null;
+        }
+
+        int vin = Integer.parseInt(parts[0].trim());
+        int year = Integer.parseInt(parts[1].trim());
+        String make = parts[2].trim();
+        String model = parts[3].trim();
+        String vehicleType =  parts[4].trim();
+        String color = parts[5].trim();
+        int odometer = Integer.parseInt(parts[6].trim());
+        double price = Double.parseDouble(parts[7].trim());
+        return new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+    }
+
+    public static Dealership getDealershipFromEncodedString(String encodedString){
+        String[] parts = encodedString.split("\\|");
+
+        if (parts.length != 3) {
+            return null;
+        }
+
+        String name = parts[0].trim();
+        String address = parts[1].trim();
+        String phone = parts[2].trim();
+        return new Dealership(name, address, phone);
+    }
+
+    public Dealership saveDealership(){
+        return null;
     }
 }
