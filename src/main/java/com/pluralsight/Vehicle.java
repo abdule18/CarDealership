@@ -85,9 +85,10 @@ public class Vehicle {
         this.price = price;
     }
 
-    public String getFormattedTransactionText() {
+    public String getFormattedVehicleText() {
         return String.format(
-                "%-12s %-10s %-20s %-15s %10.2f",
+//                "%-12d %-10d %-20s %-15s %-10s %-10s %-10d $%-10.2f"
+              "%d | %d | %s | %s | %s | %s | %d | $%f",
                 this.vin, this.year, this.make, this.model, this.vehicleType, this.color, this.odometer, this.price
         );
     }

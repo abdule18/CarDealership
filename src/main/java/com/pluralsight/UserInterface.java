@@ -8,9 +8,6 @@ public class UserInterface {
     private Dealership dealership;
     private static Console console = new Console();
 
-    public UserInterface(Dealership dealership) {
-        this.dealership = dealership;
-    }
 
     private void init(){
         String fileName = "inventory.csv";
@@ -19,8 +16,9 @@ public class UserInterface {
     }
 
     private void displayVehicles(ArrayList<Vehicle> vehicles){
+        System.out.println(this.dealership.getFormattedDealershipText());
         for (Vehicle v: vehicles){
-            System.out.println("displaying all vehicles: " + v.getFormattedTransactionText());
+            System.out.println(v.getFormattedVehicleText());
         }
     }
 
@@ -79,6 +77,10 @@ public class UserInterface {
     }
 
     public void processGetByPriceRequest() {
+        double min = console.promptForDouble("What's the min price to search for?");
+        double max = console.promptForDouble("What's the max price to search for?");
+        displayVehicles(dealership.getVehiclesByPrice(min,max));
+
     }
     public void processGetByMakeModelRequest() {
 
@@ -93,13 +95,12 @@ public class UserInterface {
 
     }
     public void processGetByVehicleTypeRequest() {
-
     }
     public void processGetAllVehiclesRequest() {
-
+        ArrayList<Vehicle> result = dealership.getAllVehicles();
+        displayVehicles(result);
     }
     public void processAddVehicleRequest() {
-
     }
     public void processRemoveVehicleRequest() {
 

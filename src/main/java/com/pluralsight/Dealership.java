@@ -116,4 +116,8 @@ public class Dealership {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String getFormattedDealershipText() {
+        return String.format("%s | %s | %s", this.name, this.address, this.phone);
+    }
 }
