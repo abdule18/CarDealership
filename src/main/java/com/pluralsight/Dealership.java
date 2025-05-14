@@ -93,6 +93,16 @@ public class Dealership {
         this.inventory.remove(vehicle);
     }
 
+    public Vehicle findVehicleByVin(int vin) {
+        for (Vehicle v: inventory) {
+            if (v.getVin() == vin) {
+                return v;
+            }
+        }
+
+        return null;
+    }
+
     public String getName() {
         return name;
     }
